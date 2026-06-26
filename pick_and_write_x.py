@@ -58,6 +58,18 @@ THREAD RULES:
 - TWEETS 2..n-1: ONE idea each. Conversational, concrete, specific. Include the real
   names, numbers, mechanism, and the catch. This is where the substance lives — carry
   100% of the story across the chain (X has no caption, the thread IS the content).
+- DENSITY: make every body tweet earn its place — aim to fill roughly 200-270 of the 280
+  characters with real substance (a number, a name, a mechanism, a comparison), not
+  half-empty filler. Slightly information-rich beats airy.
+- BULLET BEAT: include ONE (occasionally two) "breakdown" tweet that uses short scannable
+  bullet lines instead of prose, WHEN the story naturally has a small list (causes, steps,
+  examples, key numbers, who's affected). Format it like:
+      A short lead line:
+      • point one (tight, concrete)
+      • point two
+      • point three
+  Use "•" with line breaks; 2-4 bullets max; keep the whole tweet <= the char limit. Do
+  NOT bullet the hook or the final tweet, and don't force bullets if nothing lists cleanly.
 - FINAL TWEET: a one-line takeaway, then on a new line "Follow {HANDLE}", then on a new
   line "Source: <publication>".
 - HARD LIMITS:

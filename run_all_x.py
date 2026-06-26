@@ -14,6 +14,7 @@ import os
 import fetch
 import pick_and_write_x as engine
 import render_card_x as card
+import trends
 
 
 def _add_hero(thread, accent_hex):
@@ -40,7 +41,8 @@ def main():
     if not cands:
         raise SystemExit("No fresh candidates today.")
     print(f"Fetched {len(cands)} candidates.")
-    thread = engine.generate_thread(cands, avoid_lanes=engine._recent_lanes())
+    thread = engine.generate_thread(cands, avoid_lanes=engine._recent_lanes(),
+                                    hot_terms=trends.trend_signals())
     print(f"Chosen [{thread.get('lane')}] (score {thread.get('score')}): {thread.get('chosen_title')}")
 
     name, rgb = card.pick_palette()

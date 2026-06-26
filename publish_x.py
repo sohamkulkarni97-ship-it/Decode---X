@@ -25,7 +25,10 @@ import json
 import os
 import re
 
+import requests
+
 HERE = os.path.dirname(os.path.abspath(__file__))
+MEDIA_UPLOAD_URL = "https://api.x.com/2/media/upload"
 THREAD = os.path.join(HERE, "output", "today_thread.json")
 CARD = os.path.join(HERE, "output", "card.png")
 POSTED_LOG = os.path.join(HERE, "posted.json")
@@ -63,6 +66,33 @@ def _log_posted(thread, tweet_id):
         json.dump(log, fh, indent=2, ensure_ascii=False)
 
 
+def _upload_image_v2(path, api_key, api_secret, access_token, access_secret):
+    """Upload one image via X's v2 media endpoint (v1.1 isn't on pay-per-use).
+
+    Best-effort: returns [media_id] on success, or None so the thread still posts
+    text-only if the image step fails for any reason.
+    """
+    from requests_oauthlib import OAuth1
+    oauth = OAuth1(api_key, api_secret, access_token, access_secret)
+    try:
+        with open(path, "rb") as f:
+            r = requests.post(MEDIA_UPLOAD_URL, auth=oauth,
+                              files={"media": f},
+                              data={"media_category": "tweet_image"}, timeout=120)
+        if r.status_code >= 400:
+            raise RuntimeError(f"{r.status_code}: {r.text[:300]}")
+        j = r.json()
+        mid = str((j.get("data") or {}).get("id")
+                  or j.get("media_id_string") or j.get("id") or "")
+        if not mid:
+            raise RuntimeError(f"no media id in response: {j}")
+        print(f"  uploaded hero card (v2) -> media_id {mid}")
+        return [mid]
+    except Exception as e:
+        print(f"  [warn] image upload failed ({e}); posting thread WITHOUT image.")
+        return None
+
+
 def publish():
     with open(THREAD, encoding="utf-8") as fh:
         thread = json.load(fh)
@@ -94,14 +124,8 @@ def publish():
         access_token=access_token, access_token_secret=access_secret,
     )
 
-    media_ids = None
-    if has_card:
-        # media upload still goes through the v1.1 endpoint
-        auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_secret)
-        v1 = tweepy.API(auth)
-        media = v1.media_upload(filename=CARD)
-        media_ids = [media.media_id]
-        print(f"  uploaded hero card -> media_id {media.media_id}")
+    media_ids = _upload_image_v2(CARD, api_key, api_secret, access_token, access_secret) \
+        if has_card else None
 
     # hook tweet (with image)
     first = client.create_tweet(text=tweets[0], media_ids=media_ids)

@@ -1,0 +1,49 @@
+name: Edge Decoded X thread
+
+on:
+  schedule:
+    - cron: "30 15 * * *"    # 15:30 UTC = 09:00 PM IST, every day
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build today's thread (fetch -> Sonnet -> hero -> card)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python run_all_x.py
+
+      - name: Commit rendered card
+        run: |
+          git config user.name  "decode-x-bot"
+          git config user.email "decode-x-bot@users.noreply.github.com"
+          git add -A
+          git commit -m "thread: $(date -u +%F)" || echo "nothing to commit"
+          git push
+
+      - name: Publish thread to X
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+        run: python publish_x.py
+
+      - name: Log the post
+        run: |
+          git add posted.json || true
+          git commit -m "log: $(date -u +%F)" || echo "nothing to log"
+          git push || echo "no log push"

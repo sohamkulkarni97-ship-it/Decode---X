@@ -1,0 +1,183 @@
+"""
+Edge Decoded (X) — content engine (Claude Sonnet 4.6).
+
+Takes fresh candidates from fetch.py, asks Sonnet to (1) score them, (2) pick
+the single best story, and (3) write it as an X THREAD: one hook tweet (which
+carries the single hero image) plus a reply chain, each tweet <= 280 chars and
+LINK-FREE (links would cost 13x more per tweet under X's pay-per-use pricing).
+
+Output is thread-JSON consumed by render_card_x.py (the hero card) and
+publish_x.py (the thread poster).
+
+Env: ANTHROPIC_API_KEY must be set.
+
+Usage:
+    python pick_and_write_x.py     # fetch -> Sonnet -> writes output/today_thread.json
+"""
+import json
+import os
+import re
+
+import anthropic
+
+import fetch
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+POSTED_LOG = os.path.join(HERE, "posted.json")
+OUT = os.path.join(HERE, "output", "today_thread.json")
+
+MODEL = "claude-sonnet-4-6"
+HANDLE = "@decodededge"
+MAX_TWEET = 280
+
+SYSTEM = f"""You are the editor of Edge Decoded ({HANDLE}), a daily X (Twitter)
+account that explains the single most interesting thing happening in finance, AI,
+science, space, business, psychology, pharma, history ("on this day"), and the kind
+of incredible/unbelievable real-life stories people can't help but share.
+Your voice: sharp, factual, scroll-stopping. Never hype, never clickbait the story
+can't back up. Always attribute the real source.
+
+You will receive a list of fresh news candidates. Do two jobs:
+
+1) SCORE each candidate 0-100 for X engagement using this rubric:
+   - Surprise ("wait, what?") - 30
+   - Personal impact (health, money, daily life) - 25
+   - "I have to tell someone this" shareability - 20
+   - Thread potential (a story with 4-7 real beats to unpack) - 15
+   - Timeliness - 10
+   Avoid: dry procedural news, partisan politics, anything ambiguous or unverifiable.
+
+2) Pick the SINGLE highest scorer and write it as an Edge Decoded X THREAD.
+
+THREAD RULES:
+- The thread is a HOOK tweet + a REPLY CHAIN. 5 to 8 tweets total.
+- TWEET 1 (the hook) is the most important. It carries the single hero image and
+  must stop the scroll: a surprising claim or question, plain and punchy, ending
+  with the thread emoji. Example shape: "On Venus, a single day lasts longer than
+  its entire year. No, that's not a typo. 🧵"
+- TWEETS 2..n-1: ONE idea each. Conversational, concrete, specific. Include the real
+  names, numbers, mechanism, and the catch. This is where the substance lives — carry
+  100% of the story across the chain (X has no caption, the thread IS the content).
+- FINAL TWEET: a one-line takeaway, then on a new line "Follow {HANDLE}", then on a new
+  line "Source: <publication>".
+- HARD LIMITS:
+    * Every tweet <= {MAX_TWEET} characters INCLUDING any numbering. Count carefully.
+    * NEVER include a URL or link in ANY tweet (links cost 13x more to post). Cite the
+      source as PLAIN TEXT only ("Source: NASA"), never as a clickable link.
+    * Do NOT prefix tweets with "1/", "2/" yourself UNLESS it reads naturally; the
+      poster keeps them as separate replies regardless. Prefer clean prose over "1/n".
+- Facts must come from the candidate's title/summary. You MAY add widely-known
+  background clearly as context, but NEVER invent specific figures, study sizes,
+  quotes, or dates not in the source.
+
+HERO IMAGE (the single most important visual — it's the ONLY image, so make it count):
+- Write "image_prompt": a RICH, art-directed scene for this exact story — 3 to 5 full
+  sentences (roughly 60-110 words), not a terse line. A house cinematic style is added
+  automatically, so DON'T waste words on generic style adjectives; instead spend every
+  word on CONCRETE, STORY-SPECIFIC visual detail. Cover, in order:
+    1. The single hero SUBJECT or visual metaphor that nails this exact idea (be specific
+       and a little unexpected — the image that makes someone stop and think "what is that?").
+    2. The SETTING / background and a sense of scale or depth.
+    3. Two or three vivid concrete DETAILS (objects, textures, action, a telling moment).
+    4. The MOOD and what a single bright accent light is doing in the scene (a beam, a
+       glow, a reflection) — describe it as "a bright accent glow/beam", the brand recolors it.
+  Make a bold, imaginative creative choice — surreal, dramatic, or conceptual is welcome
+  as long as it reads instantly. Keep the LOWER THIRD of the frame calm/dark (headline goes
+  there). NEVER describe any text, letters, numbers, logos or watermarks in the image.
+- Write "headline": a SHORT, bold hook (3-7 words) that will be overlaid on the image
+  card. "highlight": the single punchiest word/number in that headline.
+- Write "label": a short uppercase tag (SCIENCE, SPACE, FINANCE, AI, PSYCHOLOGY,
+  BUSINESS, PHARMA, HISTORY, AMAZING, THE STORY).
+
+OUTPUT: return ONLY a JSON object (no prose, no markdown fences). Shape:
+{{
+  "chosen_title": "...",
+  "lane": "...",
+  "source": "...",
+  "score": 0,
+  "label": "SCIENCE",
+  "headline": "Your fan can cook you",
+  "highlight": "cook",
+  "image_prompt": "<one cinematic line, no text in image>",
+  "tweets": [
+    "<hook tweet, ends with 🧵, <=280 chars>",
+    "<body tweet, <=280 chars>",
+    "...",
+    "<final tweet: takeaway\\nFollow {HANDLE}\\nSource: <publication>>"
+  ]
+}}
+"""
+
+
+def _recent_lanes(n=3):
+    if os.path.exists(POSTED_LOG):
+        with open(POSTED_LOG, encoding="utf-8") as fh:
+            log = json.load(fh)
+        return [e.get("lane") for e in log[-n:]]
+    return []
+
+
+def _call_model(system, user):
+    client = anthropic.Anthropic()
+    resp = client.messages.create(
+        model=MODEL,
+        max_tokens=16000,
+        thinking={"type": "adaptive"},
+        system=system,
+        messages=[{"role": "user", "content": user}],
+    )
+    text = "".join(b.text for b in resp.content if b.type == "text")
+    if not text.strip():
+        raise RuntimeError(f"Empty model text (stop_reason={resp.stop_reason}).")
+    return text
+
+
+def _extract_json(text):
+    text = text.strip()
+    text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.MULTILINE).strip()
+    start, end = text.find("{"), text.rfind("}")
+    if start == -1 or end == -1:
+        raise ValueError("No JSON object found in model output")
+    return json.loads(text[start:end + 1])
+
+
+def _enforce_limits(thread):
+    """Safety net: strip links and hard-trim any tweet that slipped over 280 chars."""
+    clean = []
+    for t in thread.get("tweets", []):
+        t = re.sub(r"https?://\S+", "", t).strip()      # never allow a link
+        if len(t) > MAX_TWEET:
+            t = t[:MAX_TWEET - 1].rstrip() + "…"    # ellipsis
+        clean.append(t)
+    thread["tweets"] = [t for t in clean if t]
+    return thread
+
+
+def generate_thread(candidates, avoid_lanes=None):
+    avoid_lanes = avoid_lanes or []
+    lines = []
+    for i, c in enumerate(candidates):
+        lines.append(f"[{i}] ({c['lane']}) {c['title']} — {c['source']}\n    {c['summary'][:240]}")
+    user = (
+        f"Recent lanes already posted (rotate away from these if quality is close): "
+        f"{avoid_lanes}\n\nCANDIDATES:\n" + "\n".join(lines)
+    )
+    raw = _call_model(SYSTEM, user)
+    thread = _extract_json(raw)
+    thread["handle"] = HANDLE
+    return _enforce_limits(thread)
+
+
+if __name__ == "__main__":
+    cands = fetch.fetch_candidates()
+    if not cands:
+        raise SystemExit("No candidates fetched.")
+    print(f"Ranking {len(cands)} candidates with {MODEL}...")
+    thread = generate_thread(cands, avoid_lanes=_recent_lanes())
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as fh:
+        json.dump(thread, fh, indent=2, ensure_ascii=False)
+    print(f"\nCHOSEN [{thread.get('lane')}] (score {thread.get('score')}): {thread.get('chosen_title')}")
+    print(f"Tweets: {len(thread.get('tweets', []))}  ->  {OUT}\n")
+    for i, t in enumerate(thread.get("tweets", []), 1):
+        print(f"--- tweet {i} ({len(t)} chars) ---\n{t}\n")

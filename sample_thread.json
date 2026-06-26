@@ -1,0 +1,20 @@
+{
+  "chosen_title": "On Venus a day is longer than its year",
+  "lane": "space",
+  "source": "NASA",
+  "score": 90,
+  "label": "SPACE",
+  "headline": "A day longer than a year",
+  "highlight": "year",
+  "image_prompt": "the planet Venus rendered hyper-real and ominous, swirling sulfuric-acid clouds half in shadow, deep black space, dramatic rim light",
+  "handle": "@decodededge",
+  "accent_rgb": [0, 229, 255],
+  "tweets": [
+    "On Venus, a single day lasts longer than its entire year. No, that's not a typo. 🧵",
+    "Venus spins on its axis insanely slowly — one full rotation takes 243 Earth days. But it orbits the Sun in just 225 Earth days. So the planet finishes a lap before it finishes a single spin.",
+    "Stranger still: Venus spins backwards. On Venus, the Sun rises in the west and sets in the east — the opposite of every other major planet.",
+    "Scientists think an ancient colossal impact, or the Sun's gravitational drag on its thick atmosphere, may have flipped and slowed it over billions of years.",
+    "And that atmosphere is brutal: 96% CO2, surface pressure 90x Earth's, hot enough at 465C to melt lead. A runaway greenhouse effect gone nuclear.",
+    "Venus is almost Earth's twin in size — but a glimpse of what an out-of-control climate can do to a world.\nFollow @decodededge\nSource: NASA"
+  ]
+}

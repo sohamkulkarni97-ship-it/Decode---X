@@ -1,0 +1,26 @@
+{
+  "chosen_title": "They knew the pill was fake but their memory still improved",
+  "lane": "psychology",
+  "source": "ScienceDaily",
+  "score": 91,
+  "label": "PSYCHOLOGY",
+  "headline": "The Placebo That Knew It Was Fake",
+  "highlight": "Fake",
+  "image_prompt": "An elderly hand with prominent knuckles and fine skin lines holds a single translucent white capsule up toward soft diffused light, the pill appearing almost hollow — its shell revealing only empty air inside. The background is a blurred warm domestic study, bookshelves and a wooden side table softly out of focus, suggesting quiet everyday life at home. A small glass of water sits nearby, its surface catching a crisp pinpoint reflection, and the capsule casts a precise shadow across the fingertips gripping it. A bright accent glow emanates from within the capsule itself, spilling a pale halo onto the aged skin as if something inexplicable stirs inside the empty shell. The lower third of the frame fades into deep, calm shadow across the tabletop.",
+  "tweets": [
+    "Scientists gave older adults a fake pill, told them it was fake — and their memory measurably improved anyway.\n\nNot a metaphor. They knew it was sugar. It still worked. 🧵",
+    "This is called an open-label placebo. Classic placebos rely on the patient not knowing. The twist: these participants were told upfront — \"this pill is inert, it has no active ingredient.\" Then they took it anyway.",
+    "After just 3 weeks, healthy older adults showed measurable gains in memory, physical performance, and stress levels. Researchers described the effect size as surprising — this wasn't noise.",
+    "The leading theory: a lifetime of taking medicine has conditioned your brain to link the ritual — pill, water, swallow — with healing. That physiological signal fires even when your conscious mind knows the truth.",
+    "Why it matters: older adults are among the most overmedicated populations on earth. If open-label placebos produce real outcomes with zero side effects, it forces a hard question about what \"treatment\" actually requires.",
+    "Your brain may be its own pharmacist. It just doesn't always need to be tricked to do the job.\nFollow @decodededge\nSource: ScienceDaily"
+  ],
+  "handle": "@decodededge",
+  "palette": "violet",
+  "accent_rgb": [
+    157,
+    123,
+    255
+  ],
+  "image": "assets/hero.png"
+}

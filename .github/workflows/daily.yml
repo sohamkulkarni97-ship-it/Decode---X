@@ -2,7 +2,8 @@ name: Edge Decoded X thread
 
 on:
   schedule:
-    - cron: "30 15 * * *"    # 15:30 UTC = 09:00 PM IST, every day
+    - cron: "30 4 * * *"     # 04:30 UTC = 10:00 AM IST (morning thread)
+    - cron: "30 15 * * *"    # 15:30 UTC = 09:00 PM IST (evening thread)
   workflow_dispatch: {}
 
 permissions:

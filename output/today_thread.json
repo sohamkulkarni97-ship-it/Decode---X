@@ -1,27 +1,26 @@
 {
-  "chosen_title": "Fierce Pharma Asia—Historic solid tumor CAR-T nod; Inside Pfizer, Innovent's $10B pact; More China deals",
-  "lane": "pharma",
-  "source": "Fierce Pharma",
-  "score": 80,
-  "label": "PHARMA",
-  "headline": "Cancer's Last Wall Just Cracked",
-  "highlight": "Cracked",
-  "image_prompt": "A single human T-cell — rendered in hyper-detailed close-up, its surface bristling with engineered receptor proteins — suspended inside the dark, claustrophobic interior of a solid tumor mass. Dense amber-hued fibrous walls of tumor tissue press in from every side, with looming cancer cells blurred in the deep background to convey overwhelming scale. Two or three glowing receptor structures on the T-cell's membrane are actively latching onto a cancer cell surface, their molecular grip visible as bright branching tendrils. A bright accent glow radiates from the exact contact point between T-cell and tumor cell, casting cold blue-white light outward through the surrounding biological darkness. The lower third of the frame dissolves to near-black.",
+  "chosen_title": "Lost books by ancient philosophers recovered from 'unreadable' scrolls",
+  "lane": "science",
+  "source": "New Scientist",
+  "score": 73,
+  "label": "HISTORY",
+  "headline": "Lost 2,000 Years. Found.",
+  "highlight": "Lost",
+  "image_prompt": "A single carbonized papyrus scroll, half-unfurled on a slab of volcanic stone, its blackened surface showing faint ghost letters emerging from within the charred layers. The scroll sits in a vast, dimly lit Roman underground chamber — collapsed marble columns and drifts of gray ash receding into deep shadow behind it. Fragments of other burned scrolls lie scattered nearby; hairline fractures run across the brittle papyrus like a map of time. A bright accent glow radiates from inside the scroll's core, as if the ancient text is pushing back toward the light after two millennia of darkness. The lower third of the frame is calm dark ash and bare stone.",
   "tweets": [
-    "CAR-T therapy has put some blood cancer patients into permanent remission for nearly a decade. For solid tumors — 9 in 10 of all human cancers — it has always failed. A Chinese biotech just cracked that wall for the first time. 🧵",
-    "CAR-T works by engineering your own T-cells to hunt cancer. Doctors extract them, reprogram them with a targeting receptor, and infuse them back. Against blood cancers like leukemia, it's been near-miraculous — some patients are still cancer-free 10 years later.",
-    "Solid tumors were a completely different problem:\n• A hostile microenvironment inside the tumor actively exhausts and kills infiltrating T-cells\n• No clean single target — surface proteins vary cell to cell within the same tumor\n• Engineered T-cells can't physically penetrate de…",
-    "Chinese biotech CARsgen just cleared that wall. Their therapy received the world's first regulatory approval for a solid tumor CAR-T — targeting gastric cancer — a milestone the field has chased since CAR-T was born.",
-    "The scale of what's now in play:\n• Solid tumors = ~90% of all human cancers\n• Breast, lung, colon, pancreas, stomach — all solid\n• Every CAR-T blood cancer success to date reached roughly 10% of patients\n• This door reaches the other 90%",
-    "The deal-making spoke for itself. Pfizer and Innovent Biologics locked in a $10.5 billion cancer partnership reportedly negotiated in under five months. When the world's biggest pharma companies move that fast, the science just changed.",
-    "One approval doesn't rewrite oncology overnight. But every revolution in cancer treatment — chemo, immunotherapy, blood-cancer CAR-T — started with exactly one door cracking open.\nFollow @decodededge\nSource: Fierce Pharma"
+    "In 79 AD, Vesuvius carbonized an entire library of ancient scrolls. For 2,000 years, they were too fragile to open. AI just read them — and found lost books we thought were gone forever. 🧵",
+    "Herculaneum was buried alongside Pompeii in 79 AD. Its Villa of the Papyri held roughly 1,800 scrolls — mostly Greek philosophy. Excavated in the 1750s, they were so charred that unrolling them meant destroying them.",
+    "The scrolls look like lumps of charcoal. Scholars could only read text on the outermost edges — and those who tried to unroll them often watched the papyrus crumble to dust. The words inside were considered permanently lost.",
+    "The breakthrough: high-resolution X-ray scans detect ink inside a sealed scroll without opening it. AI then learned to spot letter shapes from tiny differences in carbon density — reading texts no human eye has seen in 2,000 years.",
+    "For the first time, Herculaneum scrolls have been read in their entirety:\n• Lost philosophical texts that exist nowhere else on Earth\n• Works sealed since the day Vesuvius erupted\n• Books that may reshape our picture of ancient Greek thought",
+    "AI didn't just help us read old books. It recovered human knowledge that survived a volcano, 2,000 years underground, and near-destruction by early excavators. The library of Herculaneum isn't done surprising us.\nFollow @decodededge\nSource: New Scientist"
   ],
   "handle": "@decodededge",
-  "palette": "violet",
+  "palette": "lime",
   "accent_rgb": [
-    157,
-    123,
-    255
+    200,
+    255,
+    0
   ],
   "image": "assets/hero.png"
 }

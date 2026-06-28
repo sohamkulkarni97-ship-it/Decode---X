@@ -1,26 +1,26 @@
 {
-  "chosen_title": "Lost books by ancient philosophers recovered from 'unreadable' scrolls",
-  "lane": "science",
-  "source": "New Scientist",
-  "score": 73,
-  "label": "HISTORY",
-  "headline": "Lost 2,000 Years. Found.",
-  "highlight": "Lost",
-  "image_prompt": "A single carbonized papyrus scroll, half-unfurled on a slab of volcanic stone, its blackened surface showing faint ghost letters emerging from within the charred layers. The scroll sits in a vast, dimly lit Roman underground chamber — collapsed marble columns and drifts of gray ash receding into deep shadow behind it. Fragments of other burned scrolls lie scattered nearby; hairline fractures run across the brittle papyrus like a map of time. A bright accent glow radiates from inside the scroll's core, as if the ancient text is pushing back toward the light after two millennia of darkness. The lower third of the frame is calm dark ash and bare stone.",
+  "chosen_title": "US CDC raises Ebola outbreak response to highest level",
+  "lane": "health",
+  "source": "Reuters",
+  "score": 83,
+  "label": "THE STORY",
+  "headline": "Ebola's Biggest Outbreak Yet?",
+  "highlight": "Biggest",
+  "image_prompt": "A lone health worker in full blue hazmat PPE stands at the entrance of a makeshift medical tent pitched in a red-earth jungle clearing in central Africa, their gloved hand resting on a sealed metal supply case marked with a biohazard symbol. The jungle treeline behind is dark and impenetrable under a heavy, overcast sky that presses the humidity down. A bright accent glow pulses from the tent opening directly behind the figure, throwing a long shadow across cracked laterite soil and catching the sheen on the worker's visor. The lower third of the frame is calm, occupied only by dark red earth and deep shadow.",
   "tweets": [
-    "In 79 AD, Vesuvius carbonized an entire library of ancient scrolls. For 2,000 years, they were too fragile to open. AI just read them — and found lost books we thought were gone forever. 🧵",
-    "Herculaneum was buried alongside Pompeii in 79 AD. Its Villa of the Papyri held roughly 1,800 scrolls — mostly Greek philosophy. Excavated in the 1750s, they were so charred that unrolling them meant destroying them.",
-    "The scrolls look like lumps of charcoal. Scholars could only read text on the outermost edges — and those who tried to unroll them often watched the papyrus crumble to dust. The words inside were considered permanently lost.",
-    "The breakthrough: high-resolution X-ray scans detect ink inside a sealed scroll without opening it. AI then learned to spot letter shapes from tiny differences in carbon density — reading texts no human eye has seen in 2,000 years.",
-    "For the first time, Herculaneum scrolls have been read in their entirety:\n• Lost philosophical texts that exist nowhere else on Earth\n• Works sealed since the day Vesuvius erupted\n• Books that may reshape our picture of ancient Greek thought",
-    "AI didn't just help us read old books. It recovered human knowledge that survived a volcano, 2,000 years underground, and near-destruction by early excavators. The library of Herculaneum isn't done surprising us.\nFollow @decodededge\nSource: New Scientist"
+    "The U.S. CDC just raised its Ebola response to the highest possible level. Africa's CDC is now warning this could become the largest outbreak in history. 🧵",
+    "The CDC runs a tiered Emergency Operations system. Level 1 — the top — means 24/7 ops, deployed field teams, and full federal coordination. It hasn't been triggered for Ebola since the 2014 West Africa outbreak that ultimately killed over 11,000 people.",
+    "This outbreak is centered in the Democratic Republic of Congo — a country that has battled Ebola more than a dozen times. But Africa's CDC is now warning this one could surpass every prior outbreak on record. That's a statement from people who've seen it all.",
+    "Ebola spreads through direct contact with bodily fluids and has hit 90% fatality rates in severe past outbreaks. Vaccines exist — but eastern DRC is one of the most conflict-ridden regions on Earth. Getting doses to people is a different problem entirely.",
+    "What's stacked against containment:\n• Active armed conflict blocks health teams from reaching cases\n• Cross-border movement is carrying the virus beyond DRC\n• Deep community distrust of outside medical responders\n• No signs the outbreak trajectory is slowing",
+    "The 2014–16 West Africa outbreak — previously the largest on record — took 2.5 years and roughly $3.6B to stop, backed by full international mobilization. U.S. global health funding has since been cut significantly. The firewall that stopped 2014 is weaker now.",
+    "A Level 1 response means the window to act is now. The real question is whether the world has the infrastructure left to use it.\nFollow @decodededge\nSource: Reuters"
   ],
   "handle": "@decodededge",
-  "palette": "lime",
+  "palette": "cyan",
   "accent_rgb": [
-    200,
-    255,
-    0
-  ],
-  "image": "assets/hero.png"
+    0,
+    229,
+    255
+  ]
 }

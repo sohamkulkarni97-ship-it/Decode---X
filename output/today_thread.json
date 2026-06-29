@@ -1,19 +1,19 @@
 {
-  "chosen_title": "Ford rehires 'gray beard' engineers after AI falls short",
-  "lane": "business",
-  "source": "TechCrunch",
-  "score": 79,
-  "label": "BUSINESS",
-  "headline": "AI Failed. The Experts Are Back.",
-  "highlight": "Failed",
-  "image_prompt": "A silver-haired automotive engineer — safety glasses pushed up on his forehead — stands alone on a vast assembly line, one hand resting firmly on a half-assembled engine block. Around him, robotic arms are frozen mid-reach, joints locked, as if defeated. Rows of vehicle chassis stretch deep into background haze. A handwritten clipboard is tucked under his arm — the kind of knowledge no dataset holds. A bright accent glow from a single overhead lamp falls directly on him, casting the surrounding idle machines into shadow. The lower third of the frame is calm, dark factory floor.",
+  "chosen_title": "Scientists discover what triggers belly fat as we age",
+  "lane": "science",
+  "source": "ScienceDaily",
+  "score": 85,
+  "label": "SCIENCE",
+  "headline": "The Hidden Switch Behind Belly Fat",
+  "highlight": "Switch",
+  "image_prompt": "A single specialized stem cell magnified to monumental scale, rendered as a translucent sphere with intricate internal scaffolding, floating at the center of a vast dark biological landscape of soft connective tissue and pale fat lobules receding into the distance. The cell's membrane is delicate and iridescent, with visible internal structure suggesting purposeful machinery. Thin filaments extend outward from it like a command hub, connecting to a ring of smaller developing fat cells forming below. A bright accent glow radiates from within the cell's nucleus, casting cool blue-white light across the surrounding tissue clusters. The lower third of the frame is calm and dark, swallowed by the deep void between fat lobules.",
   "tweets": [
-    "Ford thought AI could replace its most experienced engineers. It fired them to find out. The cars got worse. 🧵",
-    "The engineers Ford showed the door were called 'gray beards' — veterans with decades on the factory floor. Management believed AI tools could absorb their knowledge and still deliver quality vehicles. That bet did not pay off.",
-    "A Ford executive later admitted it directly: \"Mistakenly we thought that by just introducing artificial intelligence... that would produce a high-quality product.\" It didn't. Ford has since begun rehiring those same veterans.",
-    "Gray beard engineers carry knowledge AI was never trained on:\n• Undocumented fixes passed between workers on the shop floor\n• Intuition built from watching thousands of production failures\n• Judgment calls that exist in no manual or dataset",
-    "Ford isn't alone. Across manufacturing, companies are learning AI augments skilled workers — it doesn't replace the judgment that comes from decades of real experience. The gray beards aren't obsolete. They're essential.",
-    "Expertise can't be automated away — it can only be ignored until the consequences arrive.\nFollow @decodededge\nSource: TechCrunch"
+    "Scientists just discovered why belly fat suddenly appears in middle age — and it has nothing to do with eating more or moving less. 🧵",
+    "As you age, your body quietly switches on a new population of specialized stem cells. Their sole apparent job: supercharge the creation of new belly fat. They weren't there when you were young.",
+    "These aren't ordinary fat cells in disguise. They appear specifically in middle age, giving your body a dramatically enhanced ability to generate new abdominal fat — separate from diet or exercise level.",
+    "Why this reframes the conversation:\n• Middle-age weight gain can happen even without lifestyle changes — biology is driving it\n• The trigger is cellular, not just slowing metabolism\n• These stem cells may be a new target for anti-obesity drugs",
+    "The finding shifts blame away from discipline and onto biology. Your body at 45 isn't the same machine it was at 25 — it's actively building new fat-storing infrastructure that simply didn't exist before.",
+    "The belly fat battle may be rigged from inside your own cells — but now science knows exactly where to look.\nFollow @decodededge\nSource: ScienceDaily"
   ],
   "handle": "@decodededge",
   "palette": "pink",
@@ -21,5 +21,6 @@
     255,
     61,
     165
-  ]
+  ],
+  "image": "assets/hero.png"
 }

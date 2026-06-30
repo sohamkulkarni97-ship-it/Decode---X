@@ -106,6 +106,17 @@ HERO IMAGE (the single most important visual — it's the ONLY image, so make it
   Make a bold, imaginative creative choice — surreal, dramatic, or conceptual is welcome
   as long as it reads instantly. Keep the LOWER THIRD of the frame calm/dark (headline goes
   there). NEVER describe any text, letters, numbers, logos or watermarks in the image.
+- Write "image_mode": pick the VISUAL MOOD that fits this exact story — vary it day to
+  day so the page doesn't look like the same dark photo every time:
+    cinematic = dark, dramatic, high-contrast (collapses, mysteries, unsettling science,
+                history, true-crime-ish stories)
+    vibrant   = bright, punchy, energetic, saturated (amazing/feel-good stories, big wins,
+                impressive numbers, "wow" discoveries)
+    technical = clean, graphic, conceptual, studio-precise (AI, finance mechanisms,
+                abstract ideas, "how something works")
+    warm      = golden-hour, human, emotional, intimate (psychology, human-interest,
+                health/pharma stories about real people)
+  Choose deliberately based on the story's emotional register, not at random.
 - Write "headline": a SHORT, bold hook (3-7 words) that will be overlaid on the image
   card. "highlight": the single punchiest word/number in that headline.
 - Write "label": a short uppercase tag (SCIENCE, SPACE, FINANCE, AI, PSYCHOLOGY,
@@ -120,7 +131,8 @@ OUTPUT: return ONLY a JSON object (no prose, no markdown fences). Shape:
   "label": "SCIENCE",
   "headline": "Your fan can cook you",
   "highlight": "cook",
-  "image_prompt": "<one cinematic line, no text in image>",
+  "image_prompt": "<3-5 sentence rich scene, no text in image>",
+  "image_mode": "cinematic",
   "tweets": [
     "<hook tweet, ends with 🧵, <=280 chars>",
     "<body tweet, <=280 chars>",

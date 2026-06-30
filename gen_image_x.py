@@ -15,38 +15,70 @@ from openai import OpenAI
 
 MODEL = "gpt-image-1"
 
-# Cinematic, premium, single-hero look. Dark + one accent so the headline overlay
-# (added later in Pillow) stays legible and on-brand. This is a thick, art-directed
-# style block so even a short story prompt yields a striking, gallery-grade image.
-STYLE = (
+# Shared base: composition + technical rules that apply no matter the mood.
+_BASE = (
     "Award-winning, ultra-premium editorial KEY ART for a science/curiosity brand — the "
     "single hero image that has to stop the scroll on its own. Treat it like a cover shot. "
-    "ART DIRECTION: one bold, instantly-readable focal subject or visual metaphor that "
-    "captures the idea; cinematic wide composition with strong depth, layered foreground "
-    "and background, and a clear sense of scale and drama. Render with rich detail and "
-    "tactile texture — think 8K, sharp focus on the subject with gentle depth-of-field "
-    "falloff behind it. "
-    "LIGHTING & MOOD: moody, dramatic, high-contrast chiaroscuro lighting; a deep, almost "
-    "black background; bold volumetric rim-light and a glowing {accent} accent as the hero "
-    "color threading through the scene, plus one or two restrained complementary pops. "
-    "Cinematic color grade, subtle atmosphere (haze, dust, particles, or bokeh) for depth. "
-    "STYLE: lean photoreal-meets-stylized-3D editorial illustration — striking and "
-    "imaginative, never a flat clip-art icon, never a stocky generic photo. Make a bold, "
-    "unexpected creative choice that makes the viewer look twice. "
+    "Render with rich detail and tactile texture — think 8K, sharp focus on the subject "
+    "with gentle depth-of-field falloff behind it. Make a bold, unexpected creative choice "
+    "that makes the viewer look twice. "
     "COMPOSITION RULES: keep the main subject in the UPPER TWO-THIRDS and keep the LOWER "
-    "THIRD clean, dark and uncluttered (a headline will be overlaid there). Negative space "
-    "is good. "
+    "THIRD clean and uncluttered (a headline will be overlaid there). Negative space is good. "
     "STRICTLY FORBIDDEN: any text, letters, words, numbers, captions, labels, signage, "
     "logos, watermarks, UI, frames or borders anywhere in the image. "
-    "THE SCENE TO ILLUSTRATE: "
 )
 
+# Visual MOODS the content engine picks per story, so the page doesn't look like
+# the same dark-moody shot every single day. Each still threads the day's accent
+# color through the scene so the brand stays recognizable.
+MODES = {
+    # dark, dramatic, high-contrast — collapses, mysteries, unsettling science, history
+    "cinematic": (
+        "ART DIRECTION: one bold, instantly-readable focal subject or visual metaphor; "
+        "cinematic wide composition with strong depth and a clear sense of scale and drama. "
+        "LIGHTING & MOOD: moody, dramatic, high-contrast chiaroscuro lighting; a deep, "
+        "almost black background; bold volumetric rim-light and a glowing {accent} accent "
+        "as the hero color threading through the scene, plus one or two restrained "
+        "complementary pops. Cinematic color grade, subtle atmosphere (haze, dust, "
+        "particles) for depth. STYLE: lean photoreal-meets-stylized-3D, never flat clip-art. "
+    ),
+    # bright, punchy, energetic — amazing/feel-good stories, business wins, big numbers
+    "vibrant": (
+        "ART DIRECTION: one bold, joyful, larger-than-life focal subject or moment, caught "
+        "mid-action with real energy and movement. LIGHTING & MOOD: bright, saturated, "
+        "punchy daylight or studio lighting; a rich, deep-toned background (not pure black) "
+        "with the {accent} color used boldly and confidently across the scene, plus one or "
+        "two vivid complementary pops. Crisp, optimistic, high-energy color grade. STYLE: "
+        "lean photoreal-meets-stylized-3D editorial illustration, vivid and alive. "
+    ),
+    # clean, graphic, conceptual — AI, finance mechanisms, abstract ideas
+    "technical": (
+        "ART DIRECTION: one bold, clean conceptual object or visual metaphor on an "
+        "uncluttered studio-style backdrop — graphic, almost product-shot precision, "
+        "instantly readable as an idea rather than a literal scene. LIGHTING & MOOD: "
+        "crisp directional studio lighting, a deep near-black or dark-graphite background, "
+        "a glowing {accent} accent light defining the object's edges precisely, minimal "
+        "and confident. STYLE: precise, high-end 3D-render quality, premium tech-editorial. "
+    ),
+    # warm, human, emotional — psychology, human-interest, pharma/health stories
+    "warm": (
+        "ART DIRECTION: one bold, intimate human or emotionally resonant focal subject, "
+        "caught in a genuine, telling moment. LIGHTING & MOOD: warm golden-hour or soft "
+        "window light, a rich warm-toned dark background, the {accent} color appearing as "
+        "a gentle glow or reflected light rather than a hard rim-light. Tender, atmospheric, "
+        "cinematic color grade with soft haze. STYLE: photoreal-meets-stylized-3D, warm and "
+        "human, never clinical or sterile. "
+    ),
+}
 
-def generate(image_prompt, out_path, accent_hex="#C8FF00", size="1536x1024", quality="high"):
+
+def generate(image_prompt, out_path, accent_hex="#C8FF00", mode="cinematic",
+            size="1536x1024", quality="high"):
     client = OpenAI()
+    style = MODES.get(mode, MODES["cinematic"]).format(accent=accent_hex)
     res = client.images.generate(
         model=MODEL,
-        prompt=STYLE.format(accent=accent_hex) + image_prompt,
+        prompt=_BASE + style + "THE SCENE TO ILLUSTRATE: " + image_prompt,
         size=size,
         quality=quality,
         n=1,

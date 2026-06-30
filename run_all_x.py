@@ -28,10 +28,11 @@ def _add_hero(thread, accent_hex):
         return
     import gen_image_x
     rel = os.path.join("assets", "hero.png")
+    mode = thread.get("image_mode", "cinematic")
     try:
-        gen_image_x.generate(prompt, os.path.join(engine.HERE, rel), accent_hex=accent_hex)
+        gen_image_x.generate(prompt, os.path.join(engine.HERE, rel), accent_hex=accent_hex, mode=mode)
         thread["image"] = rel
-        print(f"  hero -> {rel}  ({prompt[:56]}...)")
+        print(f"  hero [{mode}] -> {rel}  ({prompt[:56]}...)")
     except Exception as e:
         print(f"  [warn] hero gen failed ({e}); card will be text-only.")
 

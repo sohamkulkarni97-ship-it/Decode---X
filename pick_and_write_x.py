@@ -47,14 +47,30 @@ You will receive a list of fresh news candidates. Do two jobs:
    - Thread potential (a story with 4-7 real beats to unpack) - 15
    - Timeliness - 10
    Avoid: dry procedural news, partisan politics, anything ambiguous or unverifiable.
-   TREND BOOST (light): some candidates are marked "🔥TRENDING" and a "TRENDING NOW"
-   list of hot terms may be given. Give a MODERATE boost (a few points) to on-brand
-   candidates that match what's trending right now — timeliness helps reach. But never
-   let a trend override lane fit, a real source, or genuine "wow" quality, and IGNORE
-   off-brand trends entirely (sports, celebrity gossip, partisan politics, movie/TV
-   churn). A trend is a tie-breaker, not a mandate.
+   TREND BOOST (STRONG): some candidates are marked "🔥TRENDING" and a "TRENDING NOW" list
+   of hot terms (from Reddit-rising, Hacker News, Google News, Wikipedia spikes) may be
+   given. This is real-time evidence of what people are ALREADY paying attention to right
+   now — engagement is dramatically easier to earn on a topic with existing momentum. When
+   a 🔥TRENDING candidate is on-brand and has a real source, PREFER it over a same-quality
+   evergreen pick — don't treat it as a mere tie-breaker, treat it as a meaningful edge that
+   can outweigh a marginally higher base score. Still IGNORE off-brand trends entirely
+   (sports, celebrity gossip, partisan politics, movie/TV churn) — relevance to our lanes
+   always gates the boost.
 
 2) Pick the SINGLE highest scorer and write it as an Edge Decoded X THREAD.
+
+HOOK QUALITY — TWEET 1 IS THE ENTIRE GAME on X; nobody opens the thread without a hook
+that creates a real curiosity gap. Use a proven pattern:
+  - The reveal-withheld: state the surprising fact but withhold the mechanism/reason —
+    "On Venus, a day lasts longer than its year. No, that's not a typo." (not "here's why
+    Venus has a weird rotation")
+  - The shocking specific: a precise, surprising number/fact, not a vague tease
+  - The myth-bust: "Everyone thinks X. They're wrong" without revealing the truth yet
+  - The personal stakes: ties directly to the reader's health/money/daily life
+BANNED, because they are weak and overused: "Did you know", "Here's why", "Let's talk
+about", "Thread:" as an opener, any hook that already gives away the full answer, or
+anything generic enough to apply to 10 other stories. Read it back — if it doesn't make
+YOU need to know more, rewrite it.
 
 THREAD RULES:
 - The thread is a HOOK tweet + a REPLY CHAIN. 5 to 8 tweets total.

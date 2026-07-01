@@ -1,26 +1,26 @@
 {
-  "chosen_title": "Scientists Found Ancient Human DNA on Cave Walls for the First Time and It Could Rewrite the Story of Prehistoric Art",
-  "lane": "science",
-  "source": "ZME Science",
-  "score": 87,
-  "label": "SCIENCE",
-  "headline": "Their DNA Was in the Walls",
-  "highlight": "DNA",
-  "image_prompt": "A prehistoric ochre handprint stencil pressed onto rough limestone deep inside a cave, the surrounding wall covered in faint animal figures and abstract marks made tens of thousands of years ago. The cave chamber recedes into absolute darkness behind it, giving a sense of vast subterranean depth and age. In the foreground, a gloved researcher's hand hovers a centimeter above the ancient surface, holding a slender sampling swab — about to collect something invisible to the naked eye. Fine dust and pigment particles drift through the narrow beam of a bright accent glow from a headlamp, suggesting the microscopic biological traces suspended in rock and air. Keep the lower third of the frame in deep shadow.",
+  "chosen_title": "Apple 'Hide My Email' Vulnerability Reveals Peoples' Real Email Addresses",
+  "lane": "tech",
+  "source": "404 Media",
+  "score": 91,
+  "label": "TECH",
+  "headline": "Apple's Privacy Shield Is Leaking",
+  "highlight": "Leaking",
+  "image_prompt": "A sleek, polished digital padlock suspended in a deep black void, its casing hairline-cracked down the center with a bright accent glow bleeding outward through the fracture like pressurized light escaping containment. Around the padlock, dozens of translucent ghost-layers — like peeled masks or stacked veils — drift apart and dissolve into the darkness, suggesting identities being slowly uncovered. The surface of the lock is cold brushed metal and frosted glass, pristine except for that single crack. The mood is quiet and unsettling, the kind of failure nobody noticed until it was too late. The lower third of the frame fades to pure shadow, calm and unlit.",
   "image_mode": "cinematic",
   "tweets": [
-    "Scientists just found ancient human DNA on cave walls — not from bones, not from soil. From the walls where prehistoric people stood and made their art. We can now find out exactly who painted them. 🧵",
-    "Until now, ancient human DNA came almost entirely from bones and teeth. But researchers have recovered genetic material directly from rock art surfaces — the first time it has ever been successfully done.",
-    "How does DNA end up on a cave wall? Every time a prehistoric artist worked, they left biology behind:\n• Skin cells shed during touch\n• Saliva and breath from leaning in close\n• Sweat pressed into stone with pigment\nA biological signature alongside every brushstroke.",
-    "This matters because the identity of prehistoric artists has always been a black box. Bones nearby tell us about the dead. DNA on the walls tells us about the living — the specific individuals who stood there and made something.",
-    "What this now unlocks:\n• Who created specific panels — sex, age, genetic ancestry\n• Whether multiple people collaborated on a single painting\n• How artists at sites thousands of miles apart may have been genetically connected",
-    "The study also raises a harder question: how much ancient DNA is already coating the walls of undiscovered caves — slowly degrading while we debate whether to enter them?\n40,000 years after someone pressed their hand to stone, we can now read what they left behind.\nFollow @decod…"
+    "Apple built 'Hide My Email' to make your real address invisible to every app on the internet. A newly discovered vulnerability does the exact opposite. 🧵",
+    "Hide My Email is an iCloud+ feature that replaces your real address with a randomly generated alias — apps see only the alias; Apple secretly forwards the mail. Your identity stays hidden. That's the entire promise of the product.",
+    "Security researchers found a flaw in how Apple handles the relay system. Someone with your alias and knowledge of the bug can potentially reverse it — exposing the real address you were trying to protect. Reported by 404 Media.",
+    "Who's most exposed:\n• People who used aliases to sign up for untrusted services\n• Anyone relying on it to avoid stalkers or harassment\n• iCloud+ subscribers who paid specifically for this privacy layer",
+    "The brutal part: Hide My Email is exactly what you reach for when privacy matters most — sensitive signups, avoiding people who'd misuse your info. A leak there isn't just a bug. It's a failure at your last line of defense.",
+    "A privacy tool that exposes what it's built to protect is the worst-case vulnerability — because users trusted it precisely because Apple told them to.\nFollow @decodededge\nSource: 404 Media"
   ],
   "handle": "@decodededge",
-  "palette": "orange",
+  "palette": "yellow",
   "accent_rgb": [
     255,
-    106,
+    212,
     0
   ],
   "image": "assets/hero.png"

@@ -182,13 +182,42 @@ def _call_model(system, user):
     return text
 
 
+def _repair_json(text):
+    """Fix common LLM JSON output issues: literal control chars in strings, trailing commas."""
+    # Remove trailing commas before } or ]
+    text = re.sub(r",\s*([}\]])", r"\1", text)
+    # Escape literal control characters inside string values
+    result = []
+    in_string = False
+    escape_next = False
+    for ch in text:
+        if escape_next:
+            result.append(ch)
+            escape_next = False
+        elif ch == "\\" and in_string:
+            result.append(ch)
+            escape_next = True
+        elif ch == '"':
+            in_string = not in_string
+            result.append(ch)
+        elif in_string and ch in "\n\r\t":
+            result.append({"\\n": "\\n", "\r": "\\r", "\t": "\\t"}.get(ch, ch) if ch != "\n" else "\\n")
+        else:
+            result.append(ch)
+    return "".join(result)
+
+
 def _extract_json(text):
     text = text.strip()
     text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.MULTILINE).strip()
     start, end = text.find("{"), text.rfind("}")
     if start == -1 or end == -1:
         raise ValueError("No JSON object found in model output")
-    return json.loads(text[start:end + 1])
+    raw = text[start:end + 1]
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        return json.loads(_repair_json(raw))
 
 
 def _enforce_limits(thread):
